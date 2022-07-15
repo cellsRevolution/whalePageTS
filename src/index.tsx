@@ -3,26 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 interface transaction {
-  status: string;
-  transactions: {
-    result: string;
-    cursor: string;
-    count: string;
-    transactions: { [keys: string]: string }[];
-  }[];
+  _id: string;
+  result: string;
+  cursor: string;
+  count: string;
+  transactions: { [keys: string]: string }[];
 }
 
 const API_HOST: string = 'http://localhost:5000';
 const INVENTORY_API_URL = `${API_HOST}/transactions`;
 
 function App() {
-  const [data, setData] = useState<transaction>();
+  const [data, setData] = useState<transaction[]>([]);
 
   // GET request function to your Mock API
   const fetchInventory = () => {
     fetch(`${INVENTORY_API_URL}`, { mode: 'cors' })
       .then((res) => res.json())
-      .then((json: transaction) => setData(json));
+      .then((json: transaction[]) => setData(json));
   };
   const formatter = Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -44,7 +42,7 @@ function App() {
   useEffect(() => {
     fetchInventory();
   }, []);
-  if (data && data.transactions) {
+  if (data) {
     return (
       <div className="container">
         <h1>Transaction table</h1>
@@ -61,7 +59,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {data.transactions.map((x) => {
+            {data.map((x) => {
               if (parseInt(x.count) > 0) {
                 return x.transactions.map((item) => (
                   <tr key={item.id}>
