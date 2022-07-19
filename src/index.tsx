@@ -10,7 +10,7 @@ interface transaction {
   transactions: { [keys: string]: string }[];
 }
 
-const API_HOST: string = 'http://localhost:5000';
+const API_HOST: string = 'http://206.189.38.144';
 const INVENTORY_API_URL = `${API_HOST}/transactions`;
 
 function App() {
