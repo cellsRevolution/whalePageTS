@@ -10,8 +10,8 @@ interface transaction {
   transactions: { [keys: string]: string }[];
 }
 
-const API_HOST: string = 'https://206.189.38.144';
-const INVENTORY_API_URL = `${API_HOST}/transactions`;
+const INVENTORY_API_URL: string =
+  'https://206.189.38.144/transactions';
 
 function App() {
   const [data, setData] = useState<transaction[]>([]);
