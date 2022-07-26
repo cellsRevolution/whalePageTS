@@ -10,7 +10,7 @@ interface transaction {
   transactions: { [keys: string]: string };
 }
 
-const INVENTORY_API_URL: string = 'http://localhost:5000';
+const INVENTORY_API_URL: string = 'https://206.189.38.144';
 
 function App() {
   const [pageNumber, setPageNumber] = useState(1);
